@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     public float speed = 6f;
     public float jumpForce = 50f;
+    public int jumpAmount;
 
     private float horizontal;
 
@@ -41,9 +42,11 @@ public class Movement : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         velocityY = rb.velocity.y;
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
+        horizontal = Input.GetAxis("Horizontal");
+        if (Input.GetKeyDown(KeyCode.Space) && jumpAmount != 0 && isGrounded())
         {
             velocityY = jumpForce;
+            jumpAmount -= 1;
         }
         if (Input.GetButtonUp("Jump") && rb.velocity.y>0)
         {
