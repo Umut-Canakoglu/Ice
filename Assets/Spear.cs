@@ -18,9 +18,19 @@ public class Spear : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag == "Spike")
+        {
+            GameObject[] spears = GameObject.FindGameObjectsWithTag("Spear");
+            foreach (GameObject obj in spears)
+            {
+                obj.name = "Spear1";
+            }
+            Destroy(gameObject);
+        }
+        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Spear")
         {
             rb.velocity = new Vector2(0f,0f);
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 }
