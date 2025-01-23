@@ -43,10 +43,16 @@ public class Movement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         velocityY = rb.velocity.y;
         horizontal = Input.GetAxis("Horizontal");
-        if (Input.GetKeyDown(KeyCode.Space) && jumpAmount != 0 && isGrounded())
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            velocityY = jumpForce;
-            jumpAmount -= 1;
+            if (isGrounded())
+            {
+                jumpAmount = 2;
+                velocityY = jumpForce;
+            } else if (isGrounded() == false && jumpAmount > 0)
+            {
+                jumpAmount -= 1;
+            }
         }
         if (Input.GetButtonUp("Jump") && rb.velocity.y>0)
         {
