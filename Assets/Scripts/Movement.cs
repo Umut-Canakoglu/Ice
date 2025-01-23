@@ -52,6 +52,7 @@ public class Movement : MonoBehaviour
             } else if (isGrounded() == false && jumpAmount > 0)
             {
                 jumpAmount -= 1;
+                velocityY = jumpForce;
             }
         }
         if (Input.GetButtonUp("Jump") && rb.velocity.y>0)
