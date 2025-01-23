@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     public float speed = 4f;
     public float jumpForce = 6f;
+    public int jumpAmount = 0;
 
     private float horizontal;
 
@@ -27,9 +28,10 @@ public class Movement : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(horizontal*speed, rb.velocity.y);
 
-         if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && jumpAmount != 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpAmount -= 1;
         }
         if (Input.GetButtonUp("Jump") && rb.velocity.y>0)
         {
@@ -37,6 +39,11 @@ public class Movement : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D  collision){
+        if(collision.gameObject.tag == "Ground"){
+            jumpAmount = 2;
+        }
+    }
     private bool isGrounded(){
         return Physics2D.OverlapCircle(groundCheck.position, 1f, groundLayer);
     }
