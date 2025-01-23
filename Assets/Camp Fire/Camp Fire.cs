@@ -26,7 +26,7 @@ public class CampFire : MonoBehaviour
     {
         playerIn = false;
         Vector2 overlapBoxCenter = (Vector2)transform.position + boxCollider.offset;
-        Vector2 overlapBoxSize = boxCollider.size;
+        Vector2 overlapBoxSize = new Vector2(boxCollider.size.x*transform.lossyScale.x, boxCollider.size.y*transform.lossyScale.y);
         Collider2D[] hitInfo = Physics2D.OverlapBoxAll(overlapBoxCenter, overlapBoxSize, transform.eulerAngles.z);
         foreach (Collider2D hit in hitInfo)
         {

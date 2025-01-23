@@ -55,7 +55,6 @@ public class Platform : MonoBehaviour
     {
         Vector2 overlapBoxCenter = new Vector2(transform.position.x + boxCollider.offset.x, transform.position.y + boxCollider.offset.y);
         Vector2 overlapBoxSize = new Vector2(boxCollider.size.x*transform.lossyScale.x, boxCollider.size.y*transform.lossyScale.y);
-        Debug.Log(overlapBoxSize.x);
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(overlapBoxCenter, overlapBoxSize);
     }

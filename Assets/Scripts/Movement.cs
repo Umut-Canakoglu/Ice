@@ -29,6 +29,10 @@ public class Movement : MonoBehaviour
         {
             onIce = true;
         }
+        if(other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            jumpAmount = 2;
+        }
     }
     void OnCollisionExit2D(Collision2D other)
     {
@@ -42,14 +46,9 @@ public class Movement : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         velocityY = rb.velocity.y;
-        horizontal = Input.GetAxis("Horizontal");
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isGrounded())
-            {
-                jumpAmount = 2;
-                velocityY = jumpForce;
-            } else if (isGrounded() == false && jumpAmount > 0)
+            if (jumpAmount > 0)
             {
                 jumpAmount -= 1;
                 velocityY = jumpForce;

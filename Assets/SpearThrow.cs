@@ -5,32 +5,57 @@ using UnityEngine;
 public class SpearThrow : MonoBehaviour
 {
     public GameObject spear;
+    public BoxCollider2D boxCollider2D;
     public Transform spearThrowPos;
     public Transform transform;
+    public Transform spearTransform;
+    public bool groundIn;
     void Start() {
+        boxCollider2D = spear.GetComponent<BoxCollider2D>();
         transform = GetComponent<Transform>();
+        spearTransform = spear.GetComponent<Transform>();
+        groundIn = false;
     }
     void Update() {
         if(Input.GetKeyDown(KeyCode.E))
         {
-            GameObject[] spears = GameObject.FindGameObjectsWithTag("Spear");
-            int length = spears.Length;
-            if (length == 2)
+            groundIn = false;
+            Vector2 overlapBoxSize = new Vector2(boxCollider2D.size.x*spearTransform.lossyScale.x, boxCollider2D.size.y*spearTransform.lossyScale.y);
+            Collider2D[] hitInfo = Physics2D.OverlapBoxAll(spearThrowPos.position, overlapBoxSize, transform.eulerAngles.z);
+            foreach (Collider2D hit in hitInfo)
             {
-                foreach (GameObject obj in spears)
+                if (hit.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
-                    if (obj.name == "Spear1")
-                    {
-                        Destroy(obj);
-                        length -= 1;
-                    } else
-                    {
-                        obj.name = "Spear" + length.ToString();
-                    }
+                    groundIn = true;
                 }
             }
-            GameObject newObj = Instantiate(spear, spearThrowPos.position, transform.rotation);
-            newObj.name = "Spear" + (length + 1).ToString();
+            if (groundIn != true)
+            {   
+                GameObject[] spears = GameObject.FindGameObjectsWithTag("Spear");
+                int length = spears.Length;
+                if (length == 2)
+                {
+                    foreach (GameObject obj in spears)
+                    {
+                        if (obj.name == "Spear1")
+                        {
+                            Destroy(obj);
+                            length -= 1;
+                        } else
+                        {
+                            obj.name = "Spear" + length.ToString();
+                        }
+                    }
+                }
+                GameObject newObj = Instantiate(spear, spearThrowPos.position, transform.rotation);
+                newObj.name = "Spear" + (length + 1).ToString();
+            }
         }
+    }
+    void OnDrawGizmos()
+    {
+        Vector2 overlapBoxSize = new Vector2(boxCollider2D.size.x*spearTransform.lossyScale.x, boxCollider2D.size.y*spearTransform.lossyScale.y);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(spearThrowPos.position, overlapBoxSize);
     }
 }
