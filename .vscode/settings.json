@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Ice.sln"
+    "dotnet.defaultSolution": "Ice2.sln"
 }
