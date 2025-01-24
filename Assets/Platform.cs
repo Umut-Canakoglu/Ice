@@ -24,7 +24,7 @@ public class Platform : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            Vector2 overlapBoxCenter = (Vector2)transform.position + boxCollider.offset;
+            Vector2 overlapBoxCenter = new Vector2(transform.position.x + boxCollider.offset.x, transform.position.y + boxCollider.offset.y);
             Vector2 overlapBoxSize = new Vector2(boxCollider.size.x*transform.lossyScale.x, boxCollider.size.y*transform.lossyScale.y);
             Collider2D[] hitInfo = Physics2D.OverlapBoxAll(overlapBoxCenter, overlapBoxSize, transform.eulerAngles.z);
             playerHere = false;
@@ -53,7 +53,7 @@ public class Platform : MonoBehaviour
     }
     void OnDrawGizmos()
     {
-        Vector2 overlapBoxCenter = new Vector2(transform.position.x + boxCollider.offset.x, transform.position.y + boxCollider.offset.y);
+        Vector2 overlapBoxCenter = new Vector2(transform.position.x, transform.position.y);
         Vector2 overlapBoxSize = new Vector2(boxCollider.size.x*transform.lossyScale.x, boxCollider.size.y*transform.lossyScale.y);
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(overlapBoxCenter, overlapBoxSize);
