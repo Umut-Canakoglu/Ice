@@ -10,7 +10,7 @@ public class Spear : MonoBehaviour
     private Vector2 direction;
     void Start()
     {
-        speed = 3f;
+        speed = 4f;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         direction = new Vector2(player.transform.localScale.x, 0f).normalized;
