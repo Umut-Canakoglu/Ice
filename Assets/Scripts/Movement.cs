@@ -19,8 +19,12 @@ public class Movement : MonoBehaviour
     private float iceMoveMulitplier;
     private float iceBaseSpeed = 2f;
     private float velocityY;
+    private bool iceSound;
+    private bool snowSound;
     void Start()
     {
+        snowSound = false;
+        iceSound = false;
         speed = walkSpeed;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -55,6 +59,7 @@ public class Movement : MonoBehaviour
             {
                 jumpAmount -= 1;
                 velocityY = jumpForce;
+                GetComponentInChildren<AudioManager>().PlaySound("Jump");
             }
         }
         if (Input.GetButtonUp("Jump") && rb.velocity.y>0)
@@ -114,6 +119,36 @@ public class Movement : MonoBehaviour
         if (transform.position.y <= -14f)
         {
             Destroy(gameObject);
+        }
+        if (isGrounded() == true && Mathf.Abs(rb.velocity.x) >= 0.1f && onIce == false)
+        {
+            if (snowSound == false)
+            {
+                snowSound = true;
+                GetComponentInChildren<AudioManager>().PlaySound("Snow");
+            }
+        } else
+        {
+            if (snowSound == true)
+            {
+                snowSound = false;
+                GetComponentInChildren<AudioManager>().StopSound("Snow");
+            }
+        }
+        if (onIce == true && Mathf.Abs(rb.velocity.x) >= 0.1f)
+        {
+            if (iceSound == false)
+            {
+                iceSound = true;
+                GetComponentInChildren<AudioManager>().PlaySound("Ice");
+            }
+        } else
+        {
+            if (iceSound == true)
+            {
+                iceSound = false;
+                GetComponentInChildren<AudioManager>().StopSound("Ice");
+            }
         }
     }
     private bool isGrounded(){
