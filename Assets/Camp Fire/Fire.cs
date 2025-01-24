@@ -11,6 +11,7 @@ public class Fire : MonoBehaviour
     public Animator animator;
     public Light2D light;
     public ParticleSystem particleSystem;
+    public GameObject camera;
     void Start()
     {
         light = GetComponentInChildren<Light2D>();
@@ -37,6 +38,7 @@ public class Fire : MonoBehaviour
                     light.intensity = 3f;
                     animator.SetBool("isOn", true);
                     transform.position = transform.position + new Vector3(0f, 0.4f, 0f);
+                    camera.GetComponent<AudioManager>().PlaySound("Fire");
                 }
                 open = true;
             }
