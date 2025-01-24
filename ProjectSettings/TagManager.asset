@@ -9,6 +9,9 @@ TagManager:
   - Spear
   - Ground
   - Spike
+  - Tutorial
+  - FireNews
+  - FreezeNews
   layers:
   - Default
   - TransparentFX
