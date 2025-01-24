@@ -15,9 +15,11 @@ public class CampFire : MonoBehaviour
     public Sprite[] sprites; 
     public Image image;
     private int currentIndex;
+    public Animator animator;
     void Start()
     {
-        currentIndex = 3;
+        animator = GetComponent<Animator>();
+        currentIndex = 4;
         transform = GetComponent<Transform>();
         boxCollider = GetComponent<BoxCollider2D>();
         image.sprite = sprites[currentIndex];;
@@ -30,7 +32,7 @@ public class CampFire : MonoBehaviour
         Collider2D[] hitInfo = Physics2D.OverlapBoxAll(overlapBoxCenter, overlapBoxSize, transform.eulerAngles.z);
         foreach (Collider2D hit in hitInfo)
         {
-            if (hit.gameObject.tag == "CampFire")
+            if (hit.gameObject.tag == "CampFire" && hit.gameObject.GetComponent<Fire>().open == true)
             {
                 playerIn = true;
             }
@@ -51,13 +53,16 @@ public class CampFire : MonoBehaviour
                 Destroy(gameObject);
             } else {
                 image.sprite = sprites[currentIndex-1];
+                currentIndex -= 1;
             }
             freezeTime = 0;
         }
         if (heatTime >= 25f)
         {
-            if (currentIndex == 3){} else {
+            if (currentIndex < 4)
+            {
                 image.sprite = sprites[currentIndex+1];
+                currentIndex += 1;
             }
             heatTime = 0;
         }
