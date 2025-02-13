@@ -23908,7 +23908,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.757805, y: -56.5}
+  m_AnchoredPosition: {x: 7.757805, y: -64.2}
   m_SizeDelta: {x: 133.71889, y: 34.502247}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &516598574 stripped
@@ -24432,7 +24432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.757805, y: -56.5}
+  m_AnchoredPosition: {x: 7.757805, y: -63.8}
   m_SizeDelta: {x: 133.71889, y: 34.502247}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &557142324 stripped
@@ -55459,7 +55459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.757805, y: -56.5}
+  m_AnchoredPosition: {x: 7.757805, y: -63.4}
   m_SizeDelta: {x: 133.71889, y: 34.502247}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1197776893
@@ -58133,7 +58133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1538446981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aba3f7548012b48a8beac2db6c8c000a, type: 3}
+  m_Script: {fileID: 11500000, guid: df7a6b97199544cea8ff7e246d395dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fireNews: {fileID: 1187807582}
